@@ -19,7 +19,7 @@ jobs:
 
     - name: Log in to Docker Hub
       run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
-      if: secrets.DOCKER_USERNAME && secrets.DOCKER_PASSWORD
+      # Removed the condition
 
     - name: Build Docker Image for Step 1
       run: docker build . --file step1/Dockerfile --tag linkextractor:step1

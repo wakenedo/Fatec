@@ -35,7 +35,7 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v2
+      uses: docker/setup-buildx-action@v3
 
     - name: Build Docker Image for Step 2
       run: docker build . --file step2/Dockerfile --tag linkextractor:step2

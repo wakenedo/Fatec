@@ -25,7 +25,7 @@ jobs:
       run: docker build . --file step1/Dockerfile --tag linkextractor:step1
 
     - name: Run Step 1 Container
-      run: docker run linkextractor:step1 http://example.com
+      run: docker run linkextractor:step1 http://odu.edu/
 
   build_and_run_step2:
     runs-on: ubuntu-latest
@@ -41,4 +41,4 @@ jobs:
       run: docker build . --file step2/Dockerfile --tag linkextractor:step2
 
     - name: Run Step 2 Container
-      run: docker run linkextractor:step2 http://example.com
+      run: docker run linkextractor:step2 http://odu.edu/

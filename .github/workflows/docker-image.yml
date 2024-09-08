@@ -1,0 +1,43 @@
+name: Link Extractor CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build_and_run_step1:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+
+    - name: Log in to Docker Hub
+      run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+
+    - name: Build Docker Image for Step 1
+      run: docker build ./docker_test/step1 --tag linkextractor:step1  
+
+    - name: Run Step 1 Container
+      run: docker run linkextractor:step1 http://odu.edu/
+
+  build_and_run_step2:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+
+    - name: Build Docker Image for Step 2
+      run: docker build ./docker_test/step2 --tag linkextractor:step2  # Updated path
+
+    - name: Run Step 2 Container
+      run: docker run linkextractor:step2 http://odu.edu/

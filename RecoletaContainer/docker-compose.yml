@@ -1,0 +1,25 @@
+services:
+  frontend:
+    build:
+      context: ./ReColeta
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80" # Exposing frontend container on port 3000
+    depends_on:
+      - backend # Ensure backend service is started first
+
+  backend:
+    build:
+      context: ./RecoletaAPI
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000" # Exposing backend container on port 5000
+    environment:
+      - mongodb+srv://recoleta:uwvoGaMf0UG5RGyx@cluster0.fupviff.mongodb.net/recoleta?retryWrites=true&w=majority&appName=Cluster0
+    depends_on:
+      - mongo # Ensure MongoDB starts before backend
+
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27017:27017" # MongoDB default port

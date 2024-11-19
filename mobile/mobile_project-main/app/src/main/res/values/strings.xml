@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Agiotas</string>
+
+    <string name="title">Agiotas</string>
+    <string name="title2">Selecione a Opção Desejada:</string>
+    <string name="btn">Contratar</string>
+
+</resources>
